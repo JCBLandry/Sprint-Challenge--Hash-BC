@@ -10,24 +10,30 @@ from timeit import default_timer as timer
 import random
 
 
-def proof_of_work(last_proof):
-    """
-    Multi-Ouroboros of Work Algorithm
-    - Find a number p' such that the last five digits of hash(p) are equal
-    to the first five digits of hash(p')
-    - IE:  last_hash: ...AE912345, new hash 12345888...
-    - p is the previous proof, and p' is the new proof
-    - Use the same method to generate SHA-256 hashes as the examples in class
-    """
+def proof_of_work(last_proof, attempts=1000000):
 
     start = timer()
+    random.seed()
 
     print("Searching for next proof")
-    proof = 0
-    #  TODO: Your code here
+    lFive = lastFive(last_proof)
+    proof = random.randint(-8000000000000000000, 8000000000000000000)
+    for i in range(attempts):
+        proofString = str(proof + i)
+        if valid_proof(lFive, proofString):
+            print("We got a proof: " + proofString + " took us " + str(timer() - start))
+            return proofString
 
     print("Proof found: " + str(proof) + " in " + str(timer() - start))
     return proof
+
+    print("Could not find proof in " + str(timer() - start))
+    return None
+
+def lastFive(last_proof):
+    encodedProof = str(last_proof).encode()
+    last_hash = hashlib.sha256(encodedProof).hexdigest()
+    return last_hash[-5:]
 
 
 def valid_proof(last_hash, proof):
