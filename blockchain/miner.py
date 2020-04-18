@@ -37,16 +37,9 @@ def lastFive(last_proof):
 
 
 def valid_proof(last_hash, proof):
-    """
-    Validates the Proof:  Multi-ouroborus:  Do the last five characters of
-    the hash of the last proof match the first five characters of the hash
-    of the new proof?
-
-    IE:  last_hash: ...AE912345, new hash 12345E88...
-    """
-
-    # TODO: Your code here!
-    pass
+    guess = proof.encode()
+    guess_hash = hashlib.sha256(guess).hexdigest()
+    return guess_hash[:5] == lastFive
 
 
 if __name__ == '__main__':
@@ -59,7 +52,7 @@ if __name__ == '__main__':
     coins_mined = 0
 
     # Load or create ID
-    f = open("my_id.txt", "r")
+    f = open(r"C:\Users\Justin\Documents\GitHub\Sprint-Challenge--Hash-BC\blockchain\my_id.txt")
     id = f.read()
     print("ID is", id)
     f.close()
