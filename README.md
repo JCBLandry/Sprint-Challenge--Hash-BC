@@ -23,12 +23,32 @@ This sprint challenge is divided up into three parts:  Hash tables coding, block
 ## Interview Questions
 
 Explain in detail the workings of a dynamic array:
-* What is the runtime complexity to access an array, add or remove from the front, and add or remove from the back?
-* What is the worse case scenario if you try to extend the storage size of a dynamic array?
 
-Explain how a blockchain is structured. What are the blocks, what is the chain? How is the data organized?
+    >>>>Making an insertion to a dynamic array grows it.
+
+
+What is the runtime complexity to access an array, add or remove from the front, and add or remove from the back?
+
+    >>>>Access: 0(1)
+    >>>>Add/Remove from Front: 0(n)
+    >>>>Add/Remove from Back: 0(1)
+
+What is the worse case scenario if you try to extend the storage size of a dynamic array?
+
+    >>>>0(n) but we don't have to do this very often. So much so that we can kind of ignore it.
+
+    Explain how a blockchain is structured. What are the blocks, what is the chain? How is the data organized?
+    >>>>A blockchain has an index, time stamp, transactions, proof, and previous hash.
+
+    >>>>The blocks hold all of these pieces and we create a chain by having each block store a hash of the previous one. It is organized in such a way that each block builds from the last one, in sequence.
  
 Explain how proof of work functions. How does it operate. How does this protect the chain from attack. What kind of attack is possible?
+
+    >>>>Proof of work is stored in the blocks and takes a good bit of computing to solve. You must find a number that when combined with the proof, hashes into a certain number of zeros in the front of the output. 
+
+    >>>>This makes it difficult to mess with, because while you have to break a few blocks in a row to make the blocks line up correctly, the rest of the world interacting with it, need only solve for one block while you try a few on your own. The longest chain wins and the world can make a longer one than you when it works together.
+
+    >>>>If someone controlled 51% of the computing power being put toward the work, they could have their chain be the longest and as such, control the chain.
 
 ## Project Set Up
 
