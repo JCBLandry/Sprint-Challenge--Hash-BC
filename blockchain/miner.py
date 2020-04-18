@@ -17,15 +17,12 @@ def proof_of_work(last_proof, attempts=1000000):
 
     print("Searching for next proof")
     lFive = lastFive(last_proof)
-    proof = random.randint(-8000000000000000000, 8000000000000000000)
+    proof = random.randint(-8000000000000000000, 80000000000000000000)
     for i in range(attempts):
         proofString = str(proof + i)
         if valid_proof(lFive, proofString):
             print("We got a proof: " + proofString + " took us " + str(timer() - start))
             return proofString
-
-    print("Proof found: " + str(proof) + " in " + str(timer() - start))
-    return proof
 
     print("Could not find proof in " + str(timer() - start))
     return None
@@ -36,7 +33,7 @@ def lastFive(last_proof):
     return last_hash[-5:]
 
 
-def valid_proof(last_hash, proof):
+def valid_proof(lastFive, proof):
     guess = proof.encode()
     guess_hash = hashlib.sha256(guess).hexdigest()
     return guess_hash[:5] == lastFive
