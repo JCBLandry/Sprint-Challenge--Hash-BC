@@ -37,7 +37,8 @@ What is the worse case scenario if you try to extend the storage size of a dynam
 
     >>>>0(n) but we don't have to do this very often. So much so that we can kind of ignore it.
 
-    Explain how a blockchain is structured. What are the blocks, what is the chain? How is the data organized?
+Explain how a blockchain is structured. What are the blocks, what is the chain? How is the data organized?
+    
     >>>>A blockchain has an index, time stamp, transactions, proof, and previous hash.
 
     >>>>The blocks hold all of these pieces and we create a chain by having each block store a hash of the previous one. It is organized in such a way that each block builds from the last one, in sequence.
